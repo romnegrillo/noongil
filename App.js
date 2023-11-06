@@ -8,12 +8,13 @@ import { cameraWithTensors } from '@tensorflow/tfjs-react-native';
 
 const TensorCamera = cameraWithTensors(Camera);
 
-LogBox.ignoreAllLogs(false);
+LogBox.ignoreAllLogs(true);
 
 const { width, height } = Dimensions.get('window');
 
 export default function App() {
   const [model, setModel] = useState(null);
+  const [isInitialized, setIsInitialized] = useState(false); // New state
   let context = useRef(null);
   const canvas = useRef(null);
 
@@ -113,6 +114,9 @@ export default function App() {
         const loadedModel = await cocoSsd.load();
         setModel(loadedModel);
         console.log('Model loaded successfully.');
+
+        // Set isInitialized to true after everything is ready
+        setIsInitialized(true);
       } catch (error) {
         console.error('Error loading model:', error);
       }
@@ -121,19 +125,23 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <TensorCamera
-        style={styles.camera}
-        type={Camera.Constants.Type.back}
-        cameraTextureHeight={textureDims.height}
-        cameraTextureWidth={textureDims.width}
-        resizeHeight={200}
-        resizeWidth={152}
-        resizeDepth={3}
-        onReady={handleCameraStream}
-        autorender={true}
-        useCustomShadersToResize={false}
-      />
-      <Canvas style={styles.canvas} ref={handleCanvas} />
+      {isInitialized && (
+        <>
+          <TensorCamera
+            style={styles.camera}
+            type={Camera.Constants.Type.back}
+            cameraTextureHeight={textureDims.height}
+            cameraTextureWidth={textureDims.width}
+            resizeHeight={200}
+            resizeWidth={152}
+            resizeDepth={3}
+            onReady={handleCameraStream}
+            autorender={true}
+            useCustomShadersToResize={false}
+          />
+          <Canvas style={styles.canvas} ref={handleCanvas} />
+        </>
+      )}
     </View>
   );
 }
