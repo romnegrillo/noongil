@@ -11,24 +11,29 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
-      "jsEngine": "jsc",
-      "bundleIdentifier": "com.example.noongil",
-      "buildNumber": "1.0.0"
+      "jsEngine": "jsc"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.example.noongil",
-      "versionCode": 1,
-      "jsEngine": "jsc"
+      "jsEngine": "jsc",
+      "package": "com.romnegrillo.noongil"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ff473730-7604-4bec-b4d7-a68db58566fa"
+      }
+    },
+    "owner": "romnegrillo"
   }
 }
