@@ -21,10 +21,10 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff",
-        "bundleIdentifier": "com.example.noongil",
-        "buildNumber": "1.0.0"
+        "backgroundColor": "#ffffff"
       },
+      "package": "com.example.noongil",
+      "versionCode": 1,
       "jsEngine": "jsc"
     },
     "web": {
